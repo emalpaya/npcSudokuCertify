@@ -1,0 +1,115 @@
+// Create one or more pre-loaded instances of the game ok
+// The complexity for the solution algorithm should be discussed
+// Your solution algorithm should accept a user entry and check to see if the solution is correct
+// Yes it is possible some solutions will require some type of brute force
+// You should be proving your solution algorithm either is or not NPC
+// You want to provide two stseps of proof: prove the problem is in NP and then show that every problem in NP reduces to your problem in polynomial time
+// You want to show that every problem reduces to your problem in polynomial time
+// You only need one algorithm. You user's response should be checked against the algorithm
+// 
+
+
+Choose one of the 24 puzzles in the provided pdf document or choose your own.
+
+CODE PORTION: Implement a game program of the puzzle with the following requirements:
+
+You are to implement at least one solvable instance of your chosen puzzle in your game. You can hard-code this puzzle instance into your program. It does not need to be randomly generated.
+Allow the player to be able to create/fill in their solution when using your program.
+You are to write an algorithm to VERIFY that the player’s submitted solution is a correct solution to the instance of the puzzle. Inform the player whether or not their submitted solution is a correct solution to the puzzle instance.
+A GUI is acceptable for this assignment. Having your game runnable on the servers is preferable to make it easier on the graders but is not required. Pygame is one option that can be used here. You could also make an application that runs in a browser or on the desktop. - From what I gathered from instructor responses, you can use whatever languages and frameworks that you want as long as you have implemented a proper verification algorithm, and your README clearly describes what the grader needs to do to run it.
+PROOF PORTION: create a PDF document with the following:
+
+You are to word your chosen puzzle in terms of a decision problem (e.g. Given an instance of the puzzle, is there a solution?) and prove if this decision problem for your puzzle is NP Complete or is not NP Complete. Writing an algorithm in your game program that actually solves this decision problem and finds a solution to instances of your puzzle is NOT required. - It seems like myself and many other students on Piazza were confused on whether or not we needed to write an algorithm that actually solves any instance of the puzzle. We do not need to do this. We only need to write a verification algorithm that checks a player's entered solution and determines if it is a solution to the puzzle instance- I confirmed this with the instructor via email.
+Show the time complexity of your verification algorithm that you implemented in the code portion.
+We are required to submit to TEACH as a single .zip file (DUE 12/7):
+
+Source code of your game program
+Executable of game program (if applicable)
+A README that details how to run your game program as well as lists the rules of the game.
+A PDF document that details the proof of your puzzle’s decision problem complexity as well as the runtime of your verification algorithm that you write in the code portion
+
+
+Starting Puzzle:
+	|	COL	
+ROW	|	0	1	2	|	3	4	5	|	6	7	8	|
+
+0	|	4	1	3	|				|			8	|
+1	|	7	9	8	|	1			|			6	|
+2	|	5			|	8		3	|		4
+
+3	|	8			|		1		|	6			|
+4	|				|	4		9	|				|
+5	|			4	|		5		|		1		|
+
+6	|		5		|	2		1	|			3	|
+7	|	6			|			5	|	1	8	7	|
+8	|	3			|				|	5	6	2	|
+
+Your Progress:
+	|	COL	
+ROW	|	0	1	2	|	3	4	5	|	6	7	8	|
+
+0	|	4	1	3	|				|			8	|
+1	|	7	9	8	|	1			|			6	|
+2	|	5			|	8		3	|		4
+
+3	|	8			|		1		|	6			|
+4	|				|	4		9	|				|
+5	|			4	|		5		|		1		|
+
+6	|		5		|	2		1	|			3	|
+7	|	6			|			5	|	1	8	7	|
+8	|	3			|				|	5	6	2	|
+
+What would you like to do:
+1: Change or Add a value
+2: Submit and Check answer
+3: Quit
+
+1 - Change or Add a value
+
+Which ROW # would you like to change or update 
+(enter 0 - 8):
+
+Which COL # would you like to change or update
+(enter 0 - 8):
+
+// check if updateable value; i.e. not a default value
+	// if no
+		Sorry, that value is one of the ones already given.
+		Please try again.
+
+	// if yes
+		// What number would you like to add to Row 1 Col 9
+			(enter 1 - 9):
+
+// display boards
+// display menu
+
+2 - Submit answer
+
+// check no empty values
+	// if empty values
+		// sorry, you must complete the board first
+	// else
+		// check
+
+// if correct:
+	// display correct solution
+// if not correct:
+	// display incorrect
+
+// check no empty values
+	// for every row 
+		// check if contains values 1 - 9
+		// send to check algo
+	// for every column
+		// check if contains values 1 - 9
+		// copy col to temp array, send to check algo
+
+// check algo // checks a passed array
+	// create bool array 1 - 9
+	// for entire array
+		// update bool array as existing
+	// if any in bool array != 1, return incorrect
+	// else return correct
