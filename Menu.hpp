@@ -1,45 +1,27 @@
+//  Created by Eva Malpaya on 12/7/20.
+//  Copyright © 2020 Eva Malpaya. All rights reserved.
 /****************************************************************
 * Author: Eva Malpaya
-* Date Created: 10/18/2020
-* Last Modification Date: 10/19/2020
-* Assignment Number: CS325 HW 3 Problem 4
+* Date Created: 11/28/2020
+* Last Modification Date: 12/7/2020
+* Assignment Number: CS325 HW 8 Portfolio Project
 * Filename: Menu.hpp
 *
-* Overview: This program calculates which items a family
-*           should choose based on its price, weight, and
-*           maximum weight they can carry to in order
-*           to maximize their total profits for a shopping
-*           spree.
-*           It utilizes the bottom-up or tableization method
-*           learned this week for dynamic programming.
+* Overview: This program allows the user to play an instance
+*           of the NP-Complete puzzle and game, Sudoku. The
+*           user may enter values into the puzzle and submit
+*           for completion and verification when done.
+*           The program then certifies the solution in
+*           polynomial time.
 *
-* Input:	shopping.txt
+* Input:	User input from terminal
 *
-* Output:	results.txt
+* Output:	Terminal output only
 *
 * This program utilizes the Game, GetInt, and Menu classes
 * I wrote for CS 162 in Fall 2019 quarter
-* (Retrieved October 2020).
-* Original header comment block is below.
+* (Retrieved November 2020).
 *****************************************************************/
-//  Created by Eva Malpaya on 12/10/19.
-//  Copyright © 2019 Eva Malpaya. All rights reserved.
- /*********************************************************************
-  ** Program name: Menu.hpp
-  ** Author: Eva Malpaya
-  ** Date: 12/10/2019
-  ** Description: The header file for the Menu class.
-  ** Private class members include two string vectors to hold the
-  ** main display message and options.
-  ** Public class members include a constructor and destructor;
-  ** resetters and replacers for the display or option vectors;
-  ** and a show() function which prints the menu in its entirety--
-  ** display and options included.
-  ** Code was adapted from instructor's suggestion in piazza question
-  ** thread titled 'Code organization (where to put menu)' (retrieved
-  ** November 2019): https://piazza.com/class/k0rofchnorj31s?cid=470
-  *********************************************************************/
-
 #ifndef Menu_HPP
 #define Menu_HPP
 #include <iostream>
@@ -50,6 +32,20 @@ using std::cout;
 using std::string;
 using std::endl;
 
+ /*
+  * Description: Menu class
+  * Author: Eva Malpaya
+  * Date: 12/10/2019
+  * Private class members include two string vectors to hold the
+  * main display message and options.
+  * Public class members include a constructor and destructor;
+  * resetters and replacers for the display or option vectors;
+  * and a show() function which prints the menu in its entirety--
+  * display and options included.
+  * Code was adapted from instructor's suggestion in piazza question
+  * thread titled 'Code organization (where to put menu)' (retrieved
+  * November 2019): https://piazza.com/class/k0rofchnorj31s?cid=470
+ */
 class Menu
 {
 private:

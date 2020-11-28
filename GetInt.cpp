@@ -1,51 +1,42 @@
+//  Created by Eva Malpaya on 12/7/20.
+//  Copyright © 2020 Eva Malpaya. All rights reserved.
 /****************************************************************
 * Author: Eva Malpaya
-* Date Created: 10/18/2020
-* Last Modification Date: 10/19/2020
-* Assignment Number: CS325 HW 3 Problem 4
-* Filename: GetInt.cpp
+* Date Created: 11/28/2020
+* Last Modification Date: 12/7/2020
+* Assignment Number: CS325 HW 8 Portfolio Project
+* Filename: GetInt.hpp
 *
-* Overview: This program calculates which items a family
-*           should choose based on its price, weight, and
-*           maximum weight they can carry to in order
-*           to maximize their total profits for a shopping
-*           spree.
-*           It utilizes the bottom-up or tableization method
-*           learned this week for dynamic programming.
+* Overview: This program allows the user to play an instance
+*           of the NP-Complete puzzle and game, Sudoku. The
+*           user may enter values into the puzzle and submit
+*           for completion and verification when done.
+*           The program then certifies the solution in
+*           polynomial time.
 *
-* Input:	shopping.txt
+* Input:	User input from terminal
 *
-* Output:	results.txt
+* Output:	Terminal output only
 *
 * This program utilizes the Game, GetInt, and Menu classes
 * I wrote for CS 162 in Fall 2019 quarter
-* (Retrieved October 2020).
-* Original header comment block is below.
+* (Retrieved November 2020).
 *****************************************************************/
-//  Created by Eva Malpaya on 12/10/19.
-//  Copyright © 2019 Eva Malpaya. All rights reserved.
- /*********************************************************************
-  ** Program name: GetInt.cpp
-  ** Author: Eva Malpaya
-  ** Date: 12/10/2019
-  ** Description: The implementation file for the GetInt class.
-  ** The GetInt class prompts the user for an integer
-  ** input, validates their input, clears extraneous input, and re-
-  ** prompts until an acceptable input is received. It includes
-  ** functions that can be called when an input less than or
-  ** greater than a certain integer is needed, or when an input
-  ** between two integers is needed.
-  ** Code adapted from LearnCPP example (retrieved in October 2019):
-  ** https://www.learncpp.com/cpp-tutorial/5-10-stdcin-extraction-and-dealing-with-invalid-text-input/
-  *********************************************************************/
-
-#include <iostream>
-#include <typeinfo>
 #include "GetInt.hpp"
-using std::cout;
-using std::cin;
-using std::string;
-using std::endl;
+
+/*
+ * Description: GetInt class
+ * Author: Eva Malpaya
+ * Date: 12/10/2019
+ * The GetInt class prompts the user for an integer
+ * input, validates their input, clears extraneous input, and re-
+ * prompts until an acceptable input is received. It includes
+ * functions that can be called when an input less than or
+ * greater than a certain integer is needed, or when an input
+ * between two integers is needed.
+ * Code adapted from LearnCPP example (retrieved in October 2019):
+ * https://www.learncpp.com/cpp-tutorial/5-10-stdcin-extraction-and-dealing-with-invalid-text-input/
+ */
 
 /*
         GetInt::GetInt()
