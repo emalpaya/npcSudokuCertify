@@ -25,12 +25,21 @@
 #include "Board.hpp"
 
 /*
- * Description: Board class
+ * Description: Board class.
+ * Private class member includes a 2D vector
+ * to hold the sudoku board.
+ * Public class members include a constructor,
+ * destructor, getter, setter, and a helper
+ * function to display the board.
  */
 
+/* Default Constructor 
+ * Sets up a solvable instance of the sudoku
+ * puzzle.
+ */
 Board::Board()
 {
-    std::vector<int> rowTemp;
+    std::vector<int> rowTemp; // temporary vector to hold 1 row of 2D vector
 
     /* initialize the board */
 
@@ -46,7 +55,13 @@ Board::Board()
         board.push_back(rowTemp);
     }
 
-    /* initialize the default values */
+    /* Initialize the default values
+     *
+     * Puzzle and solution from ('Easiest,' retrieved November 2020):
+     * https://dingo.sbs.arizona.edu/~sandiway/sudoku/examples.html 
+     *
+     */
+
     // row 0
     setValue(0, 3, 2);
     setValue(0, 4, 6);
@@ -104,67 +119,70 @@ Board::Board()
 
 }
 
-// Destructor
+/* Destructor */
 Board::~Board()
 {
     board.clear();
     board.resize(0);
 } 
 
+/* Getter function.
+ * Returns the value of a spot on the board.
+ *
+ * input:   row number of spot on board to change,
+ *          column number of spot on board to change
+ */
 int Board::getValue(int rowNum, int colNum)
 {
     return board[rowNum][colNum];
 }
 
+/* Setter function.
+ * Sets a value on the board.
+ * 
+ * input:   row number of spot on board to change,
+ *          column number of spot on board to change,
+ *          value to add or change
+ */
 void Board::setValue(int rowNum, int colNum, int value)
 {
     board[rowNum][colNum] = value;
 }
 
+/* Helper 
+ * Displays the board.
+ */
 void Board::displayBoard()
 {
-    cout << "    |  COL:" << endl;
+    // board indices of ease of reading
+    cout << "    |  COL:" << endl; 
     cout << "ROW:|  0  1  2  |  3  4  5  |  6  7  8  |" << endl;
 
     for (int i = 0; i < 9; i++)
     {
-        if (i % 3 == 0)
+        if (i % 3 == 0) // segment divider
         {
             cout << "____|___________________________________|" << endl;
         }
-        cout << i << "   ";
+        cout << i << "   "; // board indicies for ease of reading
         for (int j = 0; j < 9; j++)
         {
-            if (j % 3 == 0)
+            if (j % 3 == 0) // segment divider
             {
                 cout << "|  ";
             }
 
-            if (board[i][j] == -1)
+            if (board[i][j] == -1) // if spot is empty
             {
                 cout << "   ";
             }
-            else
+            else // display the value held there
             {
                 cout << board[i][j] << "  ";
             }
         }
-        cout << "|" << endl;
+        cout << "|" << endl; // right border of board
     }
-    cout << "____|___________________________________|" << endl;
+    cout << "____|___________________________________|" << endl; // bottom border of board
 }
 
-int Board::isEmptyValues()
-{
-    for (int i = 0; i < 9; i++)
-    {
-        for (int j = 0; j < 9; j++)
-        {
-            if (board[i][j] == -1)
-            {
-                return 1;
-            }
-        }
-    }
-    return 0;
-}

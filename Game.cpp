@@ -27,16 +27,19 @@
 /*
  * Description: Game class
  * Author: Eva Malpaya
- * Date: 12/10/2019
- * This class serves as a displayMenu to be called upon by main.
- * It keeps track of the number of times a user has played,
- * validates their input, maintains the main "title screen,"
- * and tracks the state of the game.
+ * Date Created: 12/10/2019
+ * Date Modified: 11/28/2020
+ * This class serves as a driver for the sudoku game.
+ * It displays the default board, user progress board,
+ * allows the user to add or change a value on the board,
+ * and submit a board for solution certification.
+ * It utilizes a polynomial time algorithm to verify
+ * the NP-Complete Sudoku puzzle.
+ *
  */
 
-///////////////////////////////////////////////
-// Constructor/Destructor
-///////////////////////////////////////////////
+
+/* Constructor/Destructor */
 Game::Game()
 {
     // initialize main menu display
@@ -65,29 +68,33 @@ Game::~Game()
     countValues.resize(0);
 } 
 
-///////////////////////////////////////////////
-// Getters
-///////////////////////////////////////////////
+/* Getters */
 int Game::getUserChoice()
 {
     return userChoice;
 }
 
-///////////////////////////////////////////////
-// Setters
-///////////////////////////////////////////////
+/* Setters */
 void Game::setUserChoice(int newUserChoice)
 {
     userChoice = newUserChoice;
 }
 
 
-///////////////////////////////////////////////
-// Gameplay
-///////////////////////////////////////////////
-    // displays title screen; gets
-    // and validates user input.
-    // adjusts for times user has played.
+/* Gameplay */
+
+/* displayMenu function
+ * 
+ * Drives displaying the boards,
+ * displays menu options,
+ * calls input validator to get and
+ * valdiate user's choice.
+ *
+ * input: none
+ *
+ * output: returns user choice
+ *
+ */
 int Game::displayMenu()
 {
     cout << "Solve the Sudoku Puzzle." << endl;
@@ -100,27 +107,37 @@ int Game::displayMenu()
     return getInteger.isBetween(1, 3);
 }
 
-// displays the boards
-// default board
-// then user's progress board
+/* displayBoards function
+ *
+ * Displays the default board and
+ * user progress board that precedes
+ * displaying the menu.
+ *
+ * input: none
+ *
+ * output: terminal output only
+ *
+ */
 void Game::displayBoards()
 {
     cout << "Starting Puzzle:" << endl;
     defaultBoard.displayBoard();
     cout << endl;
+
     cout << "Your Progress: " << endl;
     userBoard.displayBoard();
     cout << endl;
 }
 
-/*
- * driver()
- * Primary displayMenu function. I had intended
- * to modularize this function further, but
- * ran out of time.
+/* driver function
  *
- * input: shopping.txt
- * output: results.txt
+ * Primary driver function for gameplay.
+ * User can add or change a value on the
+ * board or submit it for certification.
+ *
+ * input: none
+ *
+ * output: none
  *
  */
 void Game::driver()
@@ -135,23 +152,38 @@ void Game::driver()
     }
 }
 
+/* changeOrAddValue function
+ *
+ * Gameplay function.
+ *
+ * input:   input from terminal only--
+ *          row number from user,
+ *          column number from user,
+ *          value to set on board
+ *
+ * output:  output to terminal only
+ *
+ */
 void Game::changeOrAddValue()
 {
     int rowNum = 0;
     int colNum = 0;
-    int isUpdateable = 1;
+    int isUpdateable = 1; // helper bool variable
     int userValue = 0;
 
+    // get row number user would like to change
     cout << "Which ROW # would you like to change or update" << endl;
     cout << "(enter 0 - 8)?:" << endl;
     rowNum = getInteger.isBetween(0, 8);
     cout << endl;
 
+    // get column number user would like to change
     cout << "Which COL # would you like to change or update" << endl;
     cout << "(enter 0 - 8)?:" << endl;
     colNum = getInteger.isBetween(0, 8);
     cout << endl;
 
+    // checks if user is changing non-given default value
     isUpdateable = checkUpdateable(rowNum, colNum);
 
     if (isUpdateable == 0)
@@ -162,6 +194,7 @@ void Game::changeOrAddValue()
     }
     else
     {
+        // get value user would like to add or change to
         cout << "What number would you like to add to ";
         cout << "ROW " << rowNum << " ";
         cout << "COL " << colNum << "?" << endl;
@@ -174,9 +207,19 @@ void Game::changeOrAddValue()
     }
 }
 
-// checks if row and col number entered
-// is updateable (i.e., not one of the default
-// values given)
+/* checkUpdateable function
+ *
+ * Helper gameplay function. Checks if 
+ * row and column number entered by user
+ * is a changeable value (i.e., not one of
+ * the default values already given).
+ *
+ * input:   row number on board to check,
+ *          column number on board to check,
+ *
+ * output:  1 if changeable value; 0 if not
+ *
+ */
 int Game::checkUpdateable(int rowNum, int colNum)
 {
     if (defaultBoard.getValue(rowNum, colNum) == -1)
@@ -190,75 +233,92 @@ int Game::checkUpdateable(int rowNum, int colNum)
 
 }
 
-// CERTIFIES/VERIFIES THE SOLUTION
+/* submitAndCheckAnswer function
+ *
+ * Gameplay function. Certifies/verifies
+ * the user's solution to the NP-Complete
+ * Sudoku board puzzle. Utilizes polynomial
+ * time algorithm to certify.
+ *
+ * input:   none
+ *
+ * output:  terminal output only; displays
+ *          whether solution is correct
+ *          or incorrect. Note that an
+ *          incomplete or unfinished board
+ *          counts as an incorrect solution.
+ *
+ */
 void Game::submitAndCheckAnswer()
 {
-    int isVerified = 1;
+    int isVerified = 1; // helper bool variable
 
-    // check every row
+    /* check every row */
     for (int i = 0; i < 9; i++)
     {
         for (int j = 0; j < 9; j++)
         {
-            if (userBoard.getValue(i, j) == -1)
+            if (userBoard.getValue(i, j) == -1) // if board incomplete
             {
-                //cout << "Sorry, you must complete the board first." << endl;
-                isVerified = 0;
+                isVerified = 0; // incorrect solution
             }
-            else
+            else // update bool helper array
             {
                 countValues[userBoard.getValue(i, j) - 1]++;
             }
         }
 
-        // check row
+        // check bool helper array
         for (int k = 0; k < 9; k++)
         {
+            // if not unique values
             if (countValues[k] != 1)
             {
-                isVerified = 0;
+                isVerified = 0; // incorrect solution
             }
         }
 
-        // reset value checker
+        // reset bool helper array for next row
         resetCountValues();
     }
 
-    // check every column
+    /* check every column */
     for (int x = 0; x < 9; x++)
     {
         for (int y = 0; y < 9; y++)
         {
-            if (userBoard.getValue(y, x) == -1)
+            if (userBoard.getValue(y, x) == -1) // if board incomplete
             {
-                //cout << "Sorry, you must complete the board first." << endl;
-                isVerified = 0;
+                isVerified = 0; // incorrect solution
             }
-            else
+            else // update bool helper array
             {
                 countValues[userBoard.getValue(y, x) - 1]++;
             }
         }
 
-        // check column
+        // check bool helper array
         for (int z = 0; z < 9; z++)
         {
+            // if not unique values
             if (countValues[z] != 1)
             {
-                isVerified = 0;
+                isVerified = 0; // incorrect solution
             }
         }
 
-        // reset value checker
+        // reset bool helper array for next row
         resetCountValues();
     }
 
+    // if at any point incorrect value found on board
     if (isVerified == 0)
     {
+        // display incorrect
         cout << "Your solution is incorrect." << endl;
         cout << endl;
     }
-    else
+    else // display correct solution; exit game
     {
         cout << "Your solution is correct." << endl;
         cout << endl;
@@ -267,11 +327,24 @@ void Game::submitAndCheckAnswer()
     }
 }
 
+/* resetCountValues function
+ *
+ * Helper Gameplay function. Resets
+ * the bool helper array used to check
+ * each line.
+ *
+ * input:   none
+ *
+ * output:  none
+ *
+ */
 void Game::resetCountValues()
 {
+    // clear existing
     countValues.clear();
     countValues.resize(0);
 
+    // re-initialize
     for (int i = 0; i < 9; i++)
     {
         countValues.push_back(0);

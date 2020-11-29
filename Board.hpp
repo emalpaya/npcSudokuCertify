@@ -26,9 +26,6 @@
 #define Board_HPP
 #include <iostream>
 #include <string>
-#include <cmath>
-#include <algorithm> 
-#include <typeinfo>
 #include <vector>
 #include "GetInt.hpp"
 #include "Board.hpp"
@@ -38,23 +35,30 @@ using std::string;
 using std::endl;
 
 /*
- * Description: Board class
+ * Description: Board class.
+ * Private class member includes a 2D vector 
+ * to hold the sudoku board.
+ * Public class members include a constructor,
+ * destructor, getter, setter, and a helper
+ * function to display the board.
  */
 class Board
 {
+    private:
+        std::vector<std::vector<int>> board; // 2D vector to hold board
 
-private:
-    std::vector<std::vector<int>> board; // 2D vector to hold board
+    public:
+        // Constructor/Destructor
+        Board();
+        ~Board();
 
-public:
-    // Constructor/Destructor
-    Board();
-    ~Board();
+        // Getter
+        int getValue(int rowNum, int colNum);
+    
+        // Setter
+        void setValue(int rowNum, int colNum, int value);
 
-    int getValue(int rowNum, int colNum);
-    void setValue(int rowNum, int colNum, int value);
-
-    void displayBoard();
-    int isEmptyValues();
+        // Action
+        void displayBoard();
 };
 #endif /* Board_hpp */

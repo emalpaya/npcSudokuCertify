@@ -1,8 +1,11 @@
-shopping: main.o Game.o GetInt.o Menu.o
-	g++ -std=c++11 main.o Game.o GetInt.o Menu.o -o shopping
+sudoku: main.o Board.o Game.o GetInt.o Menu.o
+	g++ -std=c++11 main.o Board.o Game.o GetInt.o Menu.o -o sudoku
 
 main.o: main.cpp
 	g++ -std=c++11 -c main.cpp
+
+Board.o: Board.cpp Board.hpp
+	g++ -std=c++11 -c Board.cpp
 
 Game.o: Game.cpp Game.hpp
 	g++ -std=c++11 -c Game.cpp
@@ -15,7 +18,7 @@ Menu.o: Menu.cpp Menu.hpp
 	
 # adapted from TA's Makefile Example by Harlan James  
 # Project Name
-PROJ = CS325_HW3_Malpaya_Eva
+PROJ = CS325_HW8_Malpaya_Eva
 
 zip:
 	zip $(PROJ).zip *.cpp *.hpp *.pdf *.txt makefile

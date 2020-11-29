@@ -25,11 +25,7 @@
 #ifndef Game_HPP
 #define Game_HPP
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include <string>
-#include <cmath>
-#include <algorithm> 
 #include <vector>
 #include "Menu.hpp"
 #include "GetInt.hpp"
@@ -42,22 +38,26 @@ using std::endl;
 /*
  * Description: Game class
  * Author: Eva Malpaya
- * Date: 12/10/2019
- * This class serves as a displayMenu to be called upon by main.
- * It keeps track of the number of times a user has played,
- * validates their input, maintains the main "title screen,"
- * and tracks the state of the game.
+ * Date Created: 12/10/2019
+ * Date Modified: 11/28/2020
+ * This class serves as a driver for the sudoku game.
+ * It displays the default board, user progress board,
+ * allows the user to add or change a value on the board,
+ * and submit a board for solution certification.
+ * It utilizes a polynomial time algorithm to verify
+ * the NP-Complete Sudoku puzzle.
+ *
  */
 class Game
 {
 
     private:
-        Menu menu;
-        GetInt getInteger;
-        int userChoice;
-        Board defaultBoard;
-        Board userBoard;
-        std::vector<int> countValues; // 2D vector to hold board
+        Menu menu; // displays options to user
+        GetInt getInteger; // input validator
+        int userChoice; // holds user's choices
+        Board defaultBoard; // default board for user to see
+        Board userBoard; // working copy of board showing user's progress
+        std::vector<int> countValues; // bool helper array to check no repetition
 
     public:
         // Constructor/Destructor
@@ -78,7 +78,6 @@ class Game
         void submitAndCheckAnswer();
         int checkUpdateable(int rowNum, int colNum);
         void resetCountValues();
-
 
 };
 #endif /* Game_hpp */
