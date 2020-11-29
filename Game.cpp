@@ -311,7 +311,122 @@ void Game::submitAndCheckAnswer()
         resetCountValues();
     }
 
-    // if at any point incorrect value found on board
+    
+    /* check every segment */
+    int count = 0;
+
+    for (int q = 0; q < 9; q++)
+    {
+        
+        for (int r = 0; r < 3; r++)
+        {
+            //cout << userBoard.getValue(q, r);
+            if (userBoard.getValue(q, r) == -1) // if board incomplete
+            {
+                isVerified = 0; // incorrect solution
+            }
+            else // update bool helper array
+            {
+                countValues[userBoard.getValue(q, r) - 1]++;
+            }
+            count++;
+        }
+        if (count == 9)
+        {
+            //cout << "end segment" << endl;
+            //count = 0;
+
+            // check bool helper array
+            for (int s = 0; s < 9; s++)
+            {
+                // if not unique values
+                if (countValues[s] != 1)
+                {
+                    isVerified = 0; // incorrect solution
+                }
+            }
+
+            // reset bool helper array for next row
+            resetCountValues();
+        }
+    }
+
+    for (int q = 0; q < 9; q++)
+    {
+
+        for (int r = 3; r < 6; r++)
+        {
+            //cout << userBoard.getValue(q, r);
+            if (userBoard.getValue(q, r) == -1) // if board incomplete
+            {
+                isVerified = 0; // incorrect solution
+            }
+            else // update bool helper array
+            {
+                countValues[userBoard.getValue(q, r) - 1]++;
+            }
+            count++;
+        }
+        if (count == 9)
+        {
+            //cout << "end segment" << endl;
+            //count = 0;
+
+            // check bool helper array
+            for (int s = 0; s < 9; s++)
+            {
+                // if not unique values
+                if (countValues[s] != 1)
+                {
+                    isVerified = 0; // incorrect solution
+                }
+            }
+
+            // reset bool helper array for next row
+            resetCountValues();
+        }
+    }
+
+    for (int q = 0; q < 9; q++)
+    {
+
+        for (int r = 6; r < 9; r++)
+        {
+            //cout << userBoard.getValue(q, r);
+            if (userBoard.getValue(q, r) == -1) // if board incomplete
+            {
+                isVerified = 0; // incorrect solution
+            }
+            else // update bool helper array
+            {
+                countValues[userBoard.getValue(q, r) - 1]++;
+            }
+            count++;
+        }
+        if (count == 9)
+        {
+            //cout << "end segment" << endl;
+            //count = 0;
+
+            // check bool helper array
+            for (int s = 0; s < 9; s++)
+            {
+                // if not unique values
+                if (countValues[s] != 1)
+                {
+                    isVerified = 0; // incorrect solution
+                }
+            }
+
+            // reset bool helper array for next row
+            resetCountValues();
+        }
+    }
+
+    
+
+    // if at any point during the above three checks
+    // an incorrect value was found on the board,
     if (isVerified == 0)
     {
         // display incorrect

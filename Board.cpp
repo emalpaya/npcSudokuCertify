@@ -114,8 +114,73 @@ Board::Board()
     setValue(8, 0, 7);
     setValue(8, 2, 3);
     setValue(8, 4, 1);
-    setValue(8, 5, 8
-    );
+    setValue(8, 5, 8);
+
+
+    //#debugme start
+    // row 0
+    setValue(0, 0, 4);
+    setValue(0, 1, 3);
+    setValue(0, 2, 5);
+    setValue(0, 5, 9);
+    setValue(0, 7, 8);
+    
+    // row 1
+    setValue(1, 2, 2);
+    setValue(1, 3, 5);
+    setValue(1, 5, 1);
+    setValue(1, 6, 4);
+    setValue(1, 8, 3);
+
+    // row 2
+    setValue(2, 2, 7);
+    setValue(2, 3, 8);
+    setValue(2, 4, 3);
+    setValue(2, 7, 6);
+    setValue(2, 8, 2);
+
+    // row 3
+    setValue(3, 2, 6);
+    setValue(3, 4, 9);
+    setValue(3, 5, 5);
+    setValue(3, 6, 3);
+    setValue(3, 8, 7);
+
+    // row 4
+    setValue(4, 0, 3);
+    setValue(4, 1, 7);
+    setValue(4, 4, 8);
+    setValue(4, 7, 1);
+    setValue(4, 8, 5);
+
+    // row 5
+    setValue(5, 0, 9);
+    setValue(5, 2, 1);
+    setValue(5, 3, 7);
+    setValue(5, 4, 4);
+    setValue(5, 6, 6);
+
+    // row 6
+    setValue(6, 0, 5);
+    setValue(6, 1, 1);
+    setValue(6, 4, 2);
+    setValue(6, 5, 6);
+    setValue(6, 6, 8);
+
+    // row 7
+    setValue(7, 0, 2);
+    setValue(7, 2, 8);
+    setValue(7, 3, 9);
+    setValue(7, 5, 7);
+    setValue(7, 6, 1);
+
+    // row 8
+    setValue(8, 1, 6);
+    setValue(8, 3, 4);
+    setValue(8, 6, 2);
+    setValue(8, 7, 5);
+    setValue(8, 8, 9);
+    //#debugme end
 
 }
 
