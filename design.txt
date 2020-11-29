@@ -119,3 +119,31 @@ Which COL # would you like to change or update
 		// update bool array as existing
 	// if any in bool array != 1, return incorrect
 	// else return correct
+
+
+	-------------
+
+                if (userBoard.getValue(i, j) == -1) // if board incomplete
+                {
+                    isVerified = 0; // incorrect solution
+                }
+                else // update bool helper array
+                {
+                    countValues[userBoard.getValue(i, j) - 1]++;
+                }
+
+
+	for (int a = 0; a < 9; a = a + 3)
+    {
+        tempRow = a - a % 3;
+        tempCol = a - a % 3;
+
+        for (int i = 0; i < tempRow; i < tempRow + 3; i++)
+        {
+            for (int j = tempCol; j < tempCol + 3; j++)
+            {
+
+            }
+        }
+
+    }

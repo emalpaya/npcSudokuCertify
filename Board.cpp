@@ -179,7 +179,7 @@ Board::Board()
     setValue(8, 3, 4);
     setValue(8, 6, 2);
     setValue(8, 7, 5);
-    setValue(8, 8, 9);
+    //setValue(8, 8, 9);
     //#debugme end
 
 }

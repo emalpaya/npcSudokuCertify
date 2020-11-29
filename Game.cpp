@@ -312,101 +312,38 @@ void Game::submitAndCheckAnswer()
     }
 
     
-    /* check every segment */
-    int count = 0;
+    /* check every segment 
+     * code for checking segment adapted from
+     * (retrieved November 2020):
+     * https://codepumpkin.com/sudoku-checker/
+     */
 
-    for (int q = 0; q < 9; q++)
+    int tempRow = 0;
+    int tempCol = 0;
+
+    for (int x = 0; x < 9; x = x + 3)
     {
-        
-        for (int r = 0; r < 3; r++)
+        for (int w = 0; w < 9; w = w + 3)
         {
-            //cout << userBoard.getValue(q, r);
-            if (userBoard.getValue(q, r) == -1) // if board incomplete
-            {
-                isVerified = 0; // incorrect solution
-            }
-            else // update bool helper array
-            {
-                countValues[userBoard.getValue(q, r) - 1]++;
-            }
-            count++;
-        }
-        if (count == 9)
-        {
-            //cout << "end segment" << endl;
-            //count = 0;
+            tempRow = x - x % 3;
+            tempCol = w - w % 3;
 
-            // check bool helper array
-            for (int s = 0; s < 9; s++)
+            for (int y = tempRow; y < tempRow + 3; y++)
             {
-                // if not unique values
-                if (countValues[s] != 1)
+                for (int z = tempCol; z < tempCol + 3; z++)
                 {
-                    isVerified = 0; // incorrect solution
+                    cout << userBoard.getValue(y, z);
+                    if (userBoard.getValue(y, z) == -1) // if board incomplete
+                    {
+                        isVerified = 0; // incorrect solution
+                    }
+                    else // update bool helper array
+                    {
+                        countValues[userBoard.getValue(y, z) - 1]++;
+                    }
                 }
             }
-
-            // reset bool helper array for next row
-            resetCountValues();
-        }
-    }
-
-    for (int q = 0; q < 9; q++)
-    {
-
-        for (int r = 3; r < 6; r++)
-        {
-            //cout << userBoard.getValue(q, r);
-            if (userBoard.getValue(q, r) == -1) // if board incomplete
-            {
-                isVerified = 0; // incorrect solution
-            }
-            else // update bool helper array
-            {
-                countValues[userBoard.getValue(q, r) - 1]++;
-            }
-            count++;
-        }
-        if (count == 9)
-        {
-            //cout << "end segment" << endl;
-            //count = 0;
-
-            // check bool helper array
-            for (int s = 0; s < 9; s++)
-            {
-                // if not unique values
-                if (countValues[s] != 1)
-                {
-                    isVerified = 0; // incorrect solution
-                }
-            }
-
-            // reset bool helper array for next row
-            resetCountValues();
-        }
-    }
-
-    for (int q = 0; q < 9; q++)
-    {
-
-        for (int r = 6; r < 9; r++)
-        {
-            //cout << userBoard.getValue(q, r);
-            if (userBoard.getValue(q, r) == -1) // if board incomplete
-            {
-                isVerified = 0; // incorrect solution
-            }
-            else // update bool helper array
-            {
-                countValues[userBoard.getValue(q, r) - 1]++;
-            }
-            count++;
-        }
-        if (count == 9)
-        {
-            //cout << "end segment" << endl;
-            //count = 0;
+            cout << "end box" << endl;
 
             // check bool helper array
             for (int s = 0; s < 9; s++)
