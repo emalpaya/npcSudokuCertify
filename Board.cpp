@@ -48,56 +48,59 @@ Board::Board()
 
     /* initialize the default values */
     // row 0
-    setValue(0, 0, 4);
-    setValue(0, 1, 1);
-    setValue(0, 2, 3);
-    setValue(0, 8, 8);
+    setValue(0, 3, 2);
+    setValue(0, 4, 6);
+    setValue(0, 6, 7);
+    setValue(0, 8, 1);
     
     // row 1
-    setValue(1, 0, 7);
-    setValue(1, 1, 9);
-    setValue(1, 2, 8);
-    setValue(1, 3, 1);
-    setValue(1, 8, 6);
+    setValue(1, 0, 6);
+    setValue(1, 1, 8);
+    setValue(1, 4, 7);
+    setValue(1, 7, 9);
 
     // row 2
-    setValue(2, 0, 5);
-    setValue(2, 3, 8);
-    setValue(2, 5, 3);
-    setValue(2, 7, 4);
+    setValue(2, 0, 1);
+    setValue(2, 1, 9);
+    setValue(2, 5, 4);
+    setValue(2, 6, 5);
 
     // row 3
     setValue(3, 0, 8);
-    setValue(3, 4, 1);
-    setValue(3, 6, 6);
+    setValue(3, 1, 2);
+    setValue(3, 3, 1);
+    setValue(3, 7, 4);
 
     // row 4
-    setValue(4, 3, 4);
-    setValue(4, 5, 9);
+    setValue(4, 2, 4);
+    setValue(4, 3, 6);
+    setValue(4, 5, 2);
+    setValue(4, 6, 9);
 
     // row 5
-    setValue(5, 2, 4);
-    setValue(5, 4, 5);
-    setValue(5, 7, 1);
+    setValue(5, 1, 5);
+    setValue(5, 5, 3);
+    setValue(5, 7, 2);
+    setValue(5, 8, 8);
 
     // row 6
-    setValue(6, 1, 5);
-    setValue(6, 3, 2);
-    setValue(6, 5, 1);
-    setValue(6, 8, 3);
+    setValue(6, 2, 9);
+    setValue(6, 3, 3);
+    setValue(6, 7, 7);
+    setValue(6, 8, 4);
 
     // row 7
-    setValue(7, 0, 6);
-    setValue(7, 5, 5);
-    setValue(7, 6, 1);
-    setValue(7, 7, 8);
-    setValue(7, 8, 7);
+    setValue(7, 1, 4);
+    setValue(7, 4, 5);
+    setValue(7, 7, 3);
+    setValue(7, 8, 6);
 
     // row 8
-    setValue(8, 0, 3);
-    setValue(8, 6, 5);
-    setValue(8, 7, 6);
-    setValue(8, 8, 2);
+    setValue(8, 0, 7);
+    setValue(8, 2, 3);
+    setValue(8, 4, 1);
+    setValue(8, 5, 8
+    );
 
 }
 
@@ -120,16 +123,16 @@ void Board::setValue(int rowNum, int colNum, int value)
 
 void Board::displayBoard()
 {
-    cout << "   |   COL" << endl;
-    cout << "ROW	|	0	1	2	|	3	4	5	|	6	7	8	|" << endl;
+    cout << "    |  COL:" << endl;
+    cout << "ROW:|  0  1  2  |  3  4  5  |  6  7  8  |" << endl;
 
     for (int i = 0; i < 9; i++)
     {
         if (i % 3 == 0)
         {
-            cout << endl;
+            cout << "____|___________________________________|" << endl;
         }
-        cout << "i  ";
+        cout << i << "   ";
         for (int j = 0; j < 9; j++)
         {
             if (j % 3 == 0)
@@ -139,15 +142,16 @@ void Board::displayBoard()
 
             if (board[i][j] == -1)
             {
-                cout << "" << "    ";
+                cout << "   ";
             }
             else
             {
-                cout << board[i][j] << "    ";
+                cout << board[i][j] << "  ";
             }
         }
-        cout << "   |" << endl;
+        cout << "|" << endl;
     }
+    cout << "____|___________________________________|" << endl;
 }
 
 int Board::isEmptyValues()

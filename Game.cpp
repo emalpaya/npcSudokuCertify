@@ -52,18 +52,17 @@ Game::Game()
     userChoice = 0;
 
     // initialize countValues
-    countValues = new int[9];
     for (int i = 0; i < 9; i++)
     {
-        countValues[i] = 0;
+        countValues.push_back(0);
     }
 }
 
 // Destructor
 Game::~Game()
 {
-    delete[] countValues;
-    countValues = NULL;
+    countValues.clear();
+    countValues.resize(0);
 } 
 
 ///////////////////////////////////////////////
@@ -91,6 +90,9 @@ void Game::setUserChoice(int newUserChoice)
     // adjusts for times user has played.
 int Game::displayMenu()
 {
+    cout << "Solve the Sudoku Puzzle." << endl;
+    cout << endl;
+
     displayBoards();
 
     menu.show();
@@ -105,9 +107,10 @@ void Game::displayBoards()
 {
     cout << "Starting Puzzle:" << endl;
     defaultBoard.displayBoard();
-
+    cout << endl;
     cout << "Your Progress: " << endl;
     userBoard.displayBoard();
+    cout << endl;
 }
 
 /*
@@ -140,27 +143,31 @@ void Game::changeOrAddValue()
     int userValue = 0;
 
     cout << "Which ROW # would you like to change or update" << endl;
-    cout << "(enter 0 - 8):" << endl;
+    cout << "(enter 0 - 8)?:" << endl;
     rowNum = getInteger.isBetween(0, 8);
+    cout << endl;
 
     cout << "Which COL # would you like to change or update" << endl;
-    cout << "(enter 0 - 8):" << endl;
+    cout << "(enter 0 - 8)?:" << endl;
     colNum = getInteger.isBetween(0, 8);
+    cout << endl;
 
     isUpdateable = checkUpdateable(rowNum, colNum);
 
     if (isUpdateable == 0)
     {
         cout << "Sorry, that value is already given." << endl;
-        cout << "Please try again." << endl;
+        cout << "You may not change that value." << endl;
+        cout << endl;
     }
     else
     {
         cout << "What number would you like to add to ";
-        cout << "Row " << rowNum << " ";
-        cout << "Col " << colNum << "?" << endl;
-        cout << "(enter 1 - 9):" << endl;
+        cout << "ROW " << rowNum << " ";
+        cout << "COL " << colNum << "?" << endl;
+        cout << "(enter 1 - 9)?:" << endl;
         userValue = getInteger.isBetween(1, 9);
+        cout << endl;
 
         // set number in board to userValue
         userBoard.setValue(rowNum, colNum, userValue);
@@ -172,7 +179,7 @@ void Game::changeOrAddValue()
 // values given)
 int Game::checkUpdateable(int rowNum, int colNum)
 {
-    if (defaultBoard.getValue(rowNum, colNum) != -1)
+    if (defaultBoard.getValue(rowNum, colNum) == -1)
     {
         return 1;
     }
@@ -200,7 +207,7 @@ void Game::submitAndCheckAnswer()
             }
             else
             {
-                countValues[userBoard.getValue(i, j)]++;
+                countValues[userBoard.getValue(i, j) - 1]++;
             }
         }
 
@@ -229,7 +236,7 @@ void Game::submitAndCheckAnswer()
             }
             else
             {
-                countValues[userBoard.getValue(y, x)]++;
+                countValues[userBoard.getValue(y, x) - 1]++;
             }
         }
 
@@ -249,10 +256,12 @@ void Game::submitAndCheckAnswer()
     if (isVerified == 0)
     {
         cout << "Your solution is incorrect." << endl;
+        cout << endl;
     }
     else
     {
         cout << "Your solution is correct." << endl;
+        cout << endl;
         cout << "Thanks for playing!" << endl;
         userChoice = 3;
     }
@@ -260,12 +269,11 @@ void Game::submitAndCheckAnswer()
 
 void Game::resetCountValues()
 {
-    delete[] countValues;
-    countValues = NULL;
+    countValues.clear();
+    countValues.resize(0);
 
-    countValues = new int[9];
     for (int i = 0; i < 9; i++)
     {
-        countValues[i] = 0;
+        countValues.push_back(0);
     }
 }

@@ -30,6 +30,7 @@
 #include <string>
 #include <cmath>
 #include <algorithm> 
+#include <vector>
 #include "Menu.hpp"
 #include "GetInt.hpp"
 #include "Board.hpp"
@@ -56,7 +57,7 @@ class Game
         int userChoice;
         Board defaultBoard;
         Board userBoard;
-        int* countValues;
+        std::vector<int> countValues; // 2D vector to hold board
 
     public:
         // Constructor/Destructor
