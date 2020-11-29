@@ -27,7 +27,6 @@
 #include <iostream>
 #include <typeinfo>
 #include <vector>
-#include <typeinfo>
 using std::cout;
 using std::string;
 using std::endl;

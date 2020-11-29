@@ -25,7 +25,6 @@
 #ifndef Game_HPP
 #define Game_HPP
 #include <iostream>
-#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -33,6 +32,7 @@
 #include <algorithm> 
 #include "Menu.hpp"
 #include "GetInt.hpp"
+#include "Board.hpp"
 using std::cout;
 using std::cin;
 using std::string;
@@ -42,7 +42,7 @@ using std::endl;
  * Description: Game class
  * Author: Eva Malpaya
  * Date: 12/10/2019
- * This class serves as a driver to be called upon by main.
+ * This class serves as a displayMenu to be called upon by main.
  * It keeps track of the number of times a user has played,
  * validates their input, maintains the main "title screen,"
  * and tracks the state of the game.
@@ -54,7 +54,9 @@ class Game
         Menu menu;
         GetInt getInteger;
         int userChoice;
-        int timesPlayed;
+        Board defaultBoard;
+        Board userBoard;
+        int* countValues;
 
     public:
         // Constructor/Destructor
@@ -63,24 +65,19 @@ class Game
 
         // Getters
         int getUserChoice();
-        int getTimesPlayed();
 
         // Setters
         void setUserChoice(int);
-        void setTimesPlayed(int);
 
         // Gameplay
-        int titleScreen();
-        void gameIntro();
-        void playGame();
+        int displayMenu();
+        void driver();
+        void displayBoards();
+        void changeOrAddValue();
+        void submitAndCheckAnswer();
+        int checkUpdateable(int rowNum, int colNum);
+        void resetCountValues();
 
-        // Helper
-        void printArray(int* array, int size);
-        void printChoices(int* array, int size);
-        void printArrayResults(int* array, int size);
-        void print2DVector(std::vector<std::vector<std::string>> inputTemp);
-        std::vector<std::vector<std::string>> readInputFile(string inputFileName, std::vector<std::vector<std::string>> inputTemp);
-        void goShopping(int numberOfItems, int* prices, int* weights, int maxWeight, int** maxProfit);
-        void backTrace(int numberOfItems, int* prices, int* weights, int maxWeight, int** maxProfit, int* choices);
+
 };
 #endif /* Game_hpp */

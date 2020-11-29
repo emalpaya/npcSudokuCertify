@@ -5,10 +5,10 @@
 * Date Created: 11/28/2020
 * Last Modification Date: 12/7/2020
 * Assignment Number: CS325 HW 8 Portfolio Project
-* Filename: main.cpp
+* Filename: Board.hpp
 *
 * Overview: This program allows the user to play an instance
-*           of the NP-Complete puzzle and game, Sudoku. The
+*           of the NP-Complete puzzle and Board, Sudoku. The
 *           user may enter values into the puzzle and submit
 *           for completion and verification when done.
 *           The program then certifies the solution in
@@ -22,25 +22,39 @@
 * I wrote for CS 162 in Fall 2019 quarter
 * (Retrieved November 2020).
 *****************************************************************/
+#ifndef Board_HPP
+#define Board_HPP
 #include <iostream>
-#include "Game.hpp"
+#include <string>
+#include <cmath>
+#include <algorithm> 
+#include <typeinfo>
+#include <vector>
+#include "GetInt.hpp"
+#include "Board.hpp"
+using std::cout;
+using std::cin;
+using std::string;
+using std::endl;
 
-int main()
+/*
+ * Description: Board class
+ */
+class Board
 {
-    Game game;
 
-    // While user wants to play
-    while (game.getUserChoice() != 3)
-    {
-        // Get user's choice
-        game.setUserChoice(game.displayMenu());
+private:
+    std::vector<std::vector<int>> board; // 2D vector to hold board
 
-        // if user wants to quit
-        if (game.getUserChoice() == 3)
-        {
-            return 0;
-        }
-        // Otherwise, play an instance of the game
-        game.driver();
-    }
-}
+public:
+    // Constructor/Destructor
+    Board();
+    ~Board();
+
+    int getValue(int rowNum, int colNum);
+    void setValue(int rowNum, int colNum, int value);
+
+    void displayBoard();
+    int isEmptyValues();
+};
+#endif /* Board_hpp */
