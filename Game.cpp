@@ -318,21 +318,23 @@ void Game::submitAndCheckAnswer()
      * https://codepumpkin.com/sudoku-checker/
      */
 
-    int tempRow = 0;
-    int tempCol = 0;
+    int segRow = 0; // helper variable for tracking segment row start
+    int segCol = 0; //  helper variable for tracking segment col start
 
-    for (int x = 0; x < 9; x = x + 3)
+    for (int x = 0; x < 9; x = x + 3) // for each segment block vertically
     {
-        for (int w = 0; w < 9; w = w + 3)
+        for (int w = 0; w < 9; w = w + 3) // for each segment block vertically
         {
-            tempRow = x - x % 3;
-            tempCol = w - w % 3;
+            // get the start of the segment
+            segRow = x - x % 3;
+            segCol = w - w % 3;
 
-            for (int y = tempRow; y < tempRow + 3; y++)
+            // check every number in the block segment
+            for (int y = segRow; y < segRow + 3; y++)
             {
-                for (int z = tempCol; z < tempCol + 3; z++)
+                for (int z = segCol; z < segCol + 3; z++)
                 {
-                    cout << userBoard.getValue(y, z);
+                    //cout << userBoard.getValue(y, z);//#debugme
                     if (userBoard.getValue(y, z) == -1) // if board incomplete
                     {
                         isVerified = 0; // incorrect solution
@@ -343,7 +345,8 @@ void Game::submitAndCheckAnswer()
                     }
                 }
             }
-            cout << "end box" << endl;
+            //cout << "end box" << endl; //#debugme
+            //cout << endl; //#debugme
 
             // check bool helper array
             for (int s = 0; s < 9; s++)
@@ -355,7 +358,7 @@ void Game::submitAndCheckAnswer()
                 }
             }
 
-            // reset bool helper array for next row
+            // reset bool helper array for next block
             resetCountValues();
         }
     }
