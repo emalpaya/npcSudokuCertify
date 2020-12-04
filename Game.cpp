@@ -39,7 +39,7 @@
  */
 
 
-/* Constructor/Destructor */
+ /* Constructor/Destructor */
 Game::Game()
 {
     // initialize main menu display
@@ -66,7 +66,7 @@ Game::~Game()
 {
     countValues.clear();
     countValues.resize(0);
-} 
+}
 
 /* Getters */
 int Game::getUserChoice()
@@ -84,7 +84,7 @@ void Game::setUserChoice(int newUserChoice)
 /* Gameplay */
 
 /* displayMenu function
- * 
+ *
  * Drives displaying the boards,
  * displays menu options,
  * calls input validator to get and
@@ -97,7 +97,12 @@ void Game::setUserChoice(int newUserChoice)
  */
 int Game::displayMenu()
 {
+    cout << "GAME RULES:" << endl;
     cout << "Solve the Sudoku Puzzle." << endl;
+    cout << "Fill the 'Your Progress' board below with" << endl;
+    cout << "integer values such that every row," << endl;
+    cout << "column, and partitioned 3x3 segment" << endl;
+    cout << "contains distinct values from 1-9." << endl;
     cout << endl;
 
     displayBoards();
@@ -209,7 +214,7 @@ void Game::changeOrAddValue()
 
 /* checkUpdateable function
  *
- * Helper gameplay function. Checks if 
+ * Helper gameplay function. Checks if
  * row and column number entered by user
  * is a changeable value (i.e., not one of
  * the default values already given).
@@ -311,8 +316,8 @@ void Game::submitAndCheckAnswer()
         resetCountValues();
     }
 
-    
-    /* check every segment 
+
+    /* check every segment
      * code for checking segment adapted from
      * (retrieved November 2020):
      * https://codepumpkin.com/sudoku-checker/
@@ -363,7 +368,7 @@ void Game::submitAndCheckAnswer()
         }
     }
 
-    
+
 
     // if at any point during the above three checks
     // an incorrect value was found on the board,

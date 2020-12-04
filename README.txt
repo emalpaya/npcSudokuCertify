@@ -23,15 +23,20 @@ GAME RULES:
 
 Example terminal output:
 
-flip2 ~/CS325/HW8 159% make sudoku
+flip2 ~/CS325/HW8 165% make sudoku
 g++ -std=c++11 -c main.cpp
 g++ -std=c++11 -c Board.cpp
 g++ -std=c++11 -c Game.cpp
 g++ -std=c++11 -c GetInt.cpp
 g++ -std=c++11 -c Menu.cpp
 g++ -std=c++11 main.o Board.o Game.o GetInt.o Menu.o -o sudoku
-flip2 ~/CS325/HW8 160% ./sudoku
+flip2 ~/CS325/HW8 166% ./sudoku
+GAME RULES:
 Solve the Sudoku Puzzle.
+Fill the 'Your Progress' board below with
+integer values such that every row,
+column, and partitioned 3x3 segment
+contains distinct values from 1-9.
 
 Starting Puzzle:
     |  COL:
@@ -74,166 +79,4 @@ Please enter 1-3:
 3. Quit
 
 Enter an integer value:
-1
-Which ROW # would you like to change or update
-(enter 0 - 8)?:
-Enter an integer value:
-0
 
-Which COL # would you like to change or update
-(enter 0 - 8)?:
-Enter an integer value:
-0
-
-What number would you like to add to ROW 0 COL 0?
-(enter 1 - 9)?:
-Enter an integer value:
-1
-
-Solve the Sudoku Puzzle.
-
-Starting Puzzle:
-    |  COL:
-ROW:|  0  1  2  |  3  4  5  |  6  7  8  |
-____|___________________________________|
-0   |           |  2  6     |  7     1  |
-1   |  6  8     |     7     |     9     |
-2   |  1  9     |        4  |  5        |
-____|___________________________________|
-3   |  8  2     |  1        |     4     |
-4   |        4  |  6     2  |  9        |
-5   |     5     |        3  |     2  8  |
-____|___________________________________|
-6   |        9  |  3        |     7  4  |
-7   |     4     |     5     |     3  6  |
-8   |  7     3  |     1  8  |           |
-____|___________________________________|
-
-Your Progress:
-    |  COL:
-ROW:|  0  1  2  |  3  4  5  |  6  7  8  |
-____|___________________________________|
-0   |  1        |  2  6     |  7     1  |
-1   |  6  8     |     7     |     9     |
-2   |  1  9     |        4  |  5        |
-____|___________________________________|
-3   |  8  2     |  1        |     4     |
-4   |        4  |  6     2  |  9        |
-5   |     5     |        3  |     2  8  |
-____|___________________________________|
-6   |        9  |  3        |     7  4  |
-7   |     4     |     5     |     3  6  |
-8   |  7     3  |     1  8  |           |
-____|___________________________________|
-
-What would you like to do?
-Please enter 1-3:
-1. Change or Add a value
-2. Submit and Check answer
-3. Quit
-
-Enter an integer value:
-1
-Which ROW # would you like to change or update
-(enter 0 - 8)?:
-Enter an integer value:
-0
-
-Which COL # would you like to change or update
-(enter 0 - 8)?:
-Enter an integer value:
-0
-
-What number would you like to add to ROW 0 COL 0?
-(enter 1 - 9)?:
-Enter an integer value:
-4
-
-Solve the Sudoku Puzzle.
-
-Starting Puzzle:
-    |  COL:
-ROW:|  0  1  2  |  3  4  5  |  6  7  8  |
-____|___________________________________|
-0   |           |  2  6     |  7     1  |
-1   |  6  8     |     7     |     9     |
-2   |  1  9     |        4  |  5        |
-____|___________________________________|
-3   |  8  2     |  1        |     4     |
-4   |        4  |  6     2  |  9        |
-5   |     5     |        3  |     2  8  |
-____|___________________________________|
-6   |        9  |  3        |     7  4  |
-7   |     4     |     5     |     3  6  |
-8   |  7     3  |     1  8  |           |
-____|___________________________________|
-
-Your Progress:
-    |  COL:
-ROW:|  0  1  2  |  3  4  5  |  6  7  8  |
-____|___________________________________|
-0   |  4        |  2  6     |  7     1  |
-1   |  6  8     |     7     |     9     |
-2   |  1  9     |        4  |  5        |
-____|___________________________________|
-3   |  8  2     |  1        |     4     |
-4   |        4  |  6     2  |  9        |
-5   |     5     |        3  |     2  8  |
-____|___________________________________|
-6   |        9  |  3        |     7  4  |
-7   |     4     |     5     |     3  6  |
-8   |  7     3  |     1  8  |           |
-____|___________________________________|
-
-.
-.
-.
-
-Solve the Sudoku Puzzle.
-
-Starting Puzzle:
-    |  COL:
-ROW:|  0  1  2  |  3  4  5  |  6  7  8  |
-____|___________________________________|
-0   |           |  2  6     |  7     1  |
-1   |  6  8     |     7     |     9     |
-2   |  1  9     |        4  |  5        |
-____|___________________________________|
-3   |  8  2     |  1        |     4     |
-4   |        4  |  6     2  |  9        |
-5   |     5     |        3  |     2  8  |
-____|___________________________________|
-6   |        9  |  3        |     7  4  |
-7   |     4     |     5     |     3  6  |
-8   |  7     3  |     1  8  |           |
-____|___________________________________|
-
-Your Progress:
-    |  COL:
-ROW:|  0  1  2  |  3  4  5  |  6  7  8  |
-____|___________________________________|
-0   |  4  3  5  |  2  6  9  |  7  8  1  |
-1   |  6  8  2  |  5  7  1  |  4  9  3  |
-2   |  1  9  7  |  8  3  4  |  5  6  2  |
-____|___________________________________|
-3   |  8  2  6  |  1  9  5  |  3  4  7  |
-4   |  3  7  4  |  6  8  2  |  9  1  5  |
-5   |  9  5  1  |  7  4  3  |  6  2  8  |
-____|___________________________________|
-6   |  5  1  9  |  3  2  6  |  8  7  4  |
-7   |  2  4  8  |  9  5  7  |  1  3  6  |
-8   |  7  6  3  |  4  1  8  |  2  5  9  |
-____|___________________________________|
-
-What would you like to do?
-Please enter 1-3:
-1. Change or Add a value
-2. Submit and Check answer
-3. Quit
-
-Enter an integer value:
-2
-Your solution is correct.
-
-Thanks for playing!
-flip2 ~/CS325/HW8 155% 
