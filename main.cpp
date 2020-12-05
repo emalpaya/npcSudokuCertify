@@ -30,13 +30,13 @@ int main()
     Game game;
 
     // While user wants to play
-    while (game.getUserChoice() != 3)
+    while (game.getUserChoice() != 4)
     {
         // Get user's choice
         game.setUserChoice(game.displayMenu());
 
         // if user wants to quit
-        if (game.getUserChoice() == 3)
+        if (game.getUserChoice() == 4)
         {
             return 0;
         }

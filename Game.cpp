@@ -48,6 +48,7 @@ Game::Game()
 
     // initialize main menu options
     menu.addOption("Change or Add a value");
+    menu.addOption("EXTRA CREDIT: Fill with Solving Algorithm");
     menu.addOption("Submit and Check answer");
     menu.addOption("Quit");
 
@@ -109,7 +110,7 @@ int Game::displayMenu()
 
     menu.show();
 
-    return getInteger.isBetween(1, 3);
+    return getInteger.isBetween(1, 4);
 }
 
 /* displayBoards function
@@ -147,12 +148,18 @@ void Game::displayBoards()
  */
 void Game::driver()
 {
-    if (userChoice == 1)
+    switch (userChoice)
     {
+    case 1: 
         changeOrAddValue();
-    }
-    else // 2
-    {
+        break;
+    case 2:
+        fillWithSolveAlgo();
+        break;
+    case 3:
+        submitAndCheckAnswer();
+        break;
+    default:
         submitAndCheckAnswer();
     }
 }
@@ -410,3 +417,16 @@ void Game::resetCountValues()
         countValues.push_back(0);
     }
 }
+
+Board Game::fillWithSolveAlgo()
+{
+    // traverse through board
+    // if a space is changeable and not filled
+    // fill it with a number not yet in row, column, or segment
+    // pass filled board to itself
+
+    // base case board is full
+    // answers are correct
+}
+
+

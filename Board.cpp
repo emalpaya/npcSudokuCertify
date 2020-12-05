@@ -251,3 +251,81 @@ void Board::displayBoard()
     cout << "____|___________________________________|" << endl; // bottom border of board
 }
 
+// input: row, column, value to check
+// output: 1 if value is in, 0 if not
+int Board::isInRow(int row, int val)
+{
+    for (int i = 0; i < 9; i++)
+    {
+        if (userBoard.getValue(row, i) == val)
+        {
+            return 1;
+        }
+
+    }
+    return 0;
+}
+int Board::isInCol(int col, int val)
+{
+    for (int i = 0; i < 9; i++)
+    {
+        if (userBoard.getValue(i, col) == val)
+        {
+            return 1;
+        }
+
+    }
+    return 0;
+}
+int Board::isInSeg(int row, int col, int val)
+{
+    /* Code for checking segment adapted from
+    * (retrieved November 2020):
+    * https://codepumpkin.com/sudoku-checker/
+    */
+
+    int segRowStart = 0; // helper variable for tracking segment row start
+    int segColStart = 0; //  helper variable for tracking segment col start
+
+    // get the start of the segment
+    segRowStart = row - row % 3;
+    segColStart = col - col % 3;
+
+    // check every number in the block segment
+    for (int y = segRowStart; y < segRowStart + 3; y++)
+    {
+        for (int z = segColStart; z < segColStart + 3; z++)
+        {
+            //cout << userBoard.getValue(y, z);//#debugme
+            if (userBoard.getValue(y, z) == val) // if board incomplete
+            {
+                return 1;
+            }
+        }
+    }
+
+    return 0;
+
+}
+
+
+
+// checks if user board is empty
+// input: none
+// output: 1 if empty; 0 if not
+int Board::isUserBoardEmpty()
+{
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
+            if (board[i][j] == -1) 
+            {
+                return 1;
+            }
+
+        }
+    }
+
+    return 0;
+}

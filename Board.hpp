@@ -60,5 +60,10 @@ class Board
 
         // Action
         void displayBoard();
+        int isInRow(int row, int val);
+        int isInCol(int col, int val);
+        int isInSeg(int row, int col, int val);
+        int isUserBoardEmpty();
+
 };
 #endif /* Board_hpp */

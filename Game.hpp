@@ -78,6 +78,8 @@ class Game
         void submitAndCheckAnswer();
         int checkUpdateable(int rowNum, int colNum);
         void resetCountValues();
+        Board fillWithSolveAlgo();
+
 
 };
 #endif /* Game_hpp */
