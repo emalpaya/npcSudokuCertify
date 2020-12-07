@@ -41,6 +41,12 @@ Board::Board()
 {
     std::vector<int> rowTemp; // temporary vector to hold 1 row of 2D vector
 
+    // initialize countValues
+    for (int i = 0; i < 9; i++)
+    {
+        countValues.push_back(0);
+    }
+
     /* initialize the board */
 
     // add the 9 columns
@@ -189,6 +195,9 @@ Board::~Board()
 {
     board.clear();
     board.resize(0);
+
+    countValues.clear();
+    countValues.resize(0);
 } 
 
 /* Getter function.
@@ -257,7 +266,7 @@ int Board::isInRow(int row, int val)
 {
     for (int i = 0; i < 9; i++)
     {
-        if (userBoard.getValue(row, i) == val)
+        if (board[row][i] == val)
         {
             return 1;
         }
@@ -269,7 +278,7 @@ int Board::isInCol(int col, int val)
 {
     for (int i = 0; i < 9; i++)
     {
-        if (userBoard.getValue(i, col) == val)
+        if (board[i][col] == val)
         {
             return 1;
         }
@@ -297,7 +306,7 @@ int Board::isInSeg(int row, int col, int val)
         for (int z = segColStart; z < segColStart + 3; z++)
         {
             //cout << userBoard.getValue(y, z);//#debugme
-            if (userBoard.getValue(y, z) == val) // if board incomplete
+            if (board[y][z] == val) // if board incomplete
             {
                 return 1;
             }
@@ -310,10 +319,10 @@ int Board::isInSeg(int row, int col, int val)
 
 
 
-// checks if user board is empty
+// checks if user board is full
 // input: none
-// output: 1 if empty; 0 if not
-int Board::isUserBoardEmpty()
+// output: 1 if full; 0 if not
+int Board::isBoardFull()
 {
     for (int i = 0; i < 9; i++)
     {
@@ -321,11 +330,45 @@ int Board::isUserBoardEmpty()
         {
             if (board[i][j] == -1) 
             {
-                return 1;
+                return 0;
             }
 
         }
     }
 
-    return 0;
+    return 1;
 }
+
+// returns 1 if correct
+// returns 0 if incorrect
+int Board::isBoardCorrect()
+{
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
+            if (isInRow(i, board[i][j]) || isInCol(j, board[i][j]) || isInSeg(i, j, board[i][j]))
+            {
+                return 0;
+            }
+
+        }
+    }
+
+    return 1;
+}
+
+// input: row and col to check
+// output: 1 if space is empty; 0 if not
+int Board::isSpaceEmpty(int row, int col)
+{
+    if (board[row][col] == -1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+

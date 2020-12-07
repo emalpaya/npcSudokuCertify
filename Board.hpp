@@ -46,6 +46,7 @@ class Board
 {
     private:
         std::vector<std::vector<int>> board; // 2D vector to hold board
+        std::vector<int> countValues; // bool helper array to check no repetition
 
     public:
         // Constructor/Destructor
@@ -63,7 +64,9 @@ class Board
         int isInRow(int row, int val);
         int isInCol(int col, int val);
         int isInSeg(int row, int col, int val);
-        int isUserBoardEmpty();
+        int isBoardFull();
+        int isBoardCorrect();
+        int isSpaceEmpty(int row, int col);
 
 };
 #endif /* Board_hpp */

@@ -390,7 +390,7 @@ void Game::submitAndCheckAnswer()
         cout << "Your solution is correct." << endl;
         cout << endl;
         cout << "Thanks for playing!" << endl;
-        userChoice = 3;
+        userChoice = 4;
     }
 }
 
@@ -418,15 +418,52 @@ void Game::resetCountValues()
     }
 }
 
-Board Game::fillWithSolveAlgo()
+// Code adapted from (retrieved December 2020):
+// https://codepumpkin.com/sudoku-solver-using-backtracking/
+bool Game::fillWithSolveAlgo()
 {
     // traverse through board
-    // if a space is changeable and not filled
+    // if a space is changeable 
     // fill it with a number not yet in row, column, or segment
     // pass filled board to itself
 
     // base case board is full
     // answers are correct
+
+    //userBoard.displayBoard();//#debugme
+
+    // traverse through board
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
+            // for every space in board
+            if (checkUpdateable(i, j))
+            {
+                if (userBoard.isSpaceEmpty(i, j))
+                {
+                    for (int k = 1; k < 10; k++) // fill it with first avail unique value from 1-9
+                    {
+                        if (!userBoard.isInRow(i, k) && !userBoard.isInCol(j, k) && !userBoard.isInSeg(i, j, k))
+                        {
+                            userBoard.setValue(i, j, k);
+                            if (fillWithSolveAlgo())
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                userBoard.setValue(i, j, -1); // set it to empty
+                            }
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+        
+    }
+    return true;
 }
 
 
