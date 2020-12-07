@@ -261,7 +261,7 @@ int Game::checkUpdateable(int rowNum, int colNum)
  *          counts as an incorrect solution.
  *
  */
-void Game::submitAndCheckAnswer()
+void Game::submitAndCheckAnswer()//
 {
     int isVerified = 1; // helper bool variable
 
