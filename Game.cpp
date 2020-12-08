@@ -418,18 +418,25 @@ void Game::resetCountValues()
     }
 }
 
-// Code adapted from (retrieved December 2020):
-// https://codepumpkin.com/sudoku-solver-using-backtracking/
+/* fillWithSolveAlgo function
+ *
+ * Extra credit Gameplay function.
+ * Fills the User Progress board with
+ * the solution to the Sudoku instance.
+ * Utilizes recursion to solve the Sudoku
+ * puzzle.
+ *
+ * input:   none
+ *
+ * output:  returns true when board is solved
+ *             to end the recursion;
+ *          returns false if not
+ *
+ * Code adapted from (retrieved December 2020):
+ * https://codepumpkin.com/sudoku-solver-using-backtracking/
+ */
 bool Game::fillWithSolveAlgo()
 {
-    // traverse through board
-    // if a space is changeable 
-    // fill it with a number not yet in row, column, or segment
-    // pass filled board to itself
-
-    // base case board is full
-    // answers are correct
-
     //userBoard.displayBoard();//#debugme
 
     // traverse through board
@@ -437,33 +444,34 @@ bool Game::fillWithSolveAlgo()
     {
         for (int j = 0; j < 9; j++)
         {
-            // for every space in board
-            if (checkUpdateable(i, j))
+            if (checkUpdateable(i, j)) // if space is not a default given one
             {
-                if (userBoard.isSpaceEmpty(i, j))
+                if (userBoard.isSpaceEmpty(i, j)) // find the next empty space
                 {
                     for (int k = 1; k < 10; k++) // fill it with first avail unique value from 1-9
                     {
+                        // only if the value is distinct in its row, column, and segment
                         if (!userBoard.isInRow(i, k) && !userBoard.isInCol(j, k) && !userBoard.isInSeg(i, j, k))
                         {
-                            userBoard.setValue(i, j, k);
-                            if (fillWithSolveAlgo())
+                            userBoard.setValue(i, j, k); // if value distinct, fill it
+
+                            if (fillWithSolveAlgo()) // if board is filled
                             {
-                                return true;
+                                return true; // end the recursion
                             }
                             else
                             {
-                                userBoard.setValue(i, j, -1); // set it to empty
+                                userBoard.setValue(i, j, -1); // value is not distinct; set to empty to reassign
                             }
                         }
                     }
-                    return false;
+                    return false; // board not yet filled; continue recursion
                 }
             }
         }
         
     }
-    return true;
+    return true; // if reached here, no more empty spaces
 }
 
 
